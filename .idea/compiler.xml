@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Server" target="8" />
+      <module name="Server" target="1.8" />
       <module name="WebJava" target="1.8" />
       <module name="Website" target="1.8" />
     </bytecodeTargetLevel>
