@@ -12,7 +12,9 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        String webappDirLocation = "src/main/webapp/";
+        String serverLocation = new File(Main.class.getProtectionDomain().getCodeSource().getLocation()
+                .toURI()).getPath();
+        String webappDirLocation = "WebJava.war";
         Tomcat tomcat = new Tomcat();
 
         //The port that we should run on can be set into an environment variable
@@ -24,16 +26,18 @@ public class Main {
 
         tomcat.setPort(Integer.parseInt(webPort));
 
-        StandardContext ctx = (StandardContext) tomcat.addWebapp("/", new File(webappDirLocation).getAbsolutePath());
-        System.out.println("configuring app with basedir: " + new File("./" + webappDirLocation).getAbsolutePath());
+        //StandardContext ctx = (StandardContext) tomcat.addWebapp("", new File(serverLocation + "/" + webappDirLocation).getAbsolutePath());
+        //System.out.println("configuring app with basedir: " + new File(serverLocation + "/" + webappDirLocation).getAbsolutePath());
 
         // Declare an alternative location for your "WEB-INF/classes" dir
         // Servlet 3.0 annotation will work
-        File additionWebInfClasses = new File("target/classes");
-        WebResourceRoot resources = new StandardRoot(ctx);
-        resources.addPreResources(new DirResourceSet(resources, "/WEB-INF/classes",
-                additionWebInfClasses.getAbsolutePath(), "/"));
-        ctx.setResources(resources);
+        //File additionWebInfClasses = new File("target/classes");
+        //WebResourceRoot resources = new StandardRoot(ctx);
+        //resources.addPreResources(new DirResourceSet(resources, "/WEB-INF/classes",
+        //        additionWebInfClasses.getAbsolutePath(), "/"));
+        //ctx.setResources(resources);
+
+        tomcat.addWebapp("", new File("WebJava.war").getAbsolutePath());
 
         tomcat.start();
         tomcat.getServer().await();
