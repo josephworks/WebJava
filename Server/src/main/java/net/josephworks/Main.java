@@ -18,7 +18,9 @@ public class Main {
         String contextPath = "";
 
         //TODO: Implement args override
-        String warFilePath = serverLocation + "/WebJava.war";
+        String warFilePath = serverLocation + "\\WebJava.war";
+
+        System.out.println("WAR Location: " + warFilePath);
 
         tomcat.getHost().setAppBase(".");
 
